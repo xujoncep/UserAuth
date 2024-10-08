@@ -15,5 +15,6 @@ namespace UserAuth.Models
 
         [DataType(DataType.Currency)]
         public decimal Price { get; set; } // This will be set from Product table
+        public DateTime Date { get; set; } = DateTime.Now;
     }
 }

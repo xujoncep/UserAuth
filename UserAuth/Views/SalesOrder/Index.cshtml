@@ -11,6 +11,7 @@
                 <th>Product Name</th>
                 <th>Quantity</th>
                 <th>Price</th>
+                <th>Time</th>
             </tr>
         </thead>
         <tbody>
@@ -21,6 +22,7 @@
                     <td>@sales.Product.ProductName</td>
                     <td>@sales.Quantity</td>
                     <td>@sales.Price</td>
+                    <td>@sales.Date.ToString("g")</td>
                 </tr>
             }
         </tbody>

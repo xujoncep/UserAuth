@@ -57,6 +57,15 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
+app.MapControllerRoute(
+    name: "report",
+    pattern: "{controller=PurchaseReport}/{action=Index}/{id?}");
+
+app.MapControllerRoute(
+    name: "report",
+    pattern: "{controller=SalesReport}/{action=Index}/{id?}");
+
+
 app.Run();
 
 async Task SeedRolesAsync(RoleManager<IdentityRole> roleManager)

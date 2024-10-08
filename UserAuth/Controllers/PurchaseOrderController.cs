@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using UserAuth.Data;
 using UserAuth.Models;
+using UserAuth.ViewModels;
 
 namespace UserAuth.Controllers
 {

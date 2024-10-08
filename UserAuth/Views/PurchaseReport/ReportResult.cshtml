@@ -1,0 +1,46 @@
+﻿@model UserAuth.ViewModels.PurchaseReportViewModel
+
+<div class="container mt-4">
+    <h2>Purchase Report</h2>
+    <p><strong>Report From:</strong> @Model.FromDate.ToString("d") to @Model.ToDate.ToString("d")</p>
+
+    <table class="table table-bordered mt-3">
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total Price</th>
+                <th>Purchase Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var purchase in Model.Purchases)
+            {
+                <tr>
+                    <td>@purchase.ProductName</td>
+                    <td>@purchase.Quantity</td>
+                    <td>@purchase.Price.ToString("C")</td>
+                    <td>@purchase.TotalPrice.ToString("C")</td>
+                    <td>@purchase.Date.ToString("g")</td>
+                </tr>
+            }
+            <tr>
+                <td colspan="3"><strong>Total Purchase Value:</strong></td>
+                <td colspan="2"><strong>@Model.TotalPurchaseValue.ToString("C")</strong></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="mt-4">
+        <a class="btn btn-primary" href="@Url.Action("Index")">Back</a>
+        <button class="btn btn-secondary" onclick="printReport()">Print</button>
+    </div>
+</div>
+@section Scripts {
+    <script>
+        function printReport() {
+            window.print(); // This will trigger the browser's print dialog
+        }
+    </script>
+}

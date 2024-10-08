@@ -20,3 +20,21 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+@media print {
+    /* Hide unwanted elements for print */
+    header, footer, nav, .btn, .mt-4 > a {
+        display: none !important;
+    }
+
+    /* Optionally, adjust margins for better print layout */
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Ensure the table takes full width in print */
+    table {
+        width: 100%;
+    }
+}

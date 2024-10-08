@@ -1,0 +1,44 @@
+﻿@model UserAuth.ViewModels.InventoryReportViewModel
+
+<div class="container mt-4">
+    <h2>@Model.InventoryName</h2>
+    <p><strong>Report Generated:</strong> @Model.ReportGeneratedTime.ToString("g")</p>
+
+    <table class="table table-bordered mt-3">
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Quantity</th>
+                <th>Price (Per Unit)</th>
+                <th>Total Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in Model.Products)
+            {
+                <tr>
+                    <td>@product.ProductName</td>
+                    <td>@product.Quantity</td>
+                    <td>@product.Price.ToString("C")</td>
+                    <td>@product.TotalPrice.ToString("C")</td>
+                </tr>
+            }
+            <tr>
+                <td colspan="3"><strong>Total Inventory Value:</strong></td>
+                <td><strong>@Model.TotalInventoryValue.ToString("C")</strong></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="mt-4">
+        <button class="btn btn-primary" onclick="printReport()">Print</button>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function printReport() {
+            window.print();
+        }
+    </script>
+}
