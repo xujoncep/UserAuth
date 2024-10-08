@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UserAuth.Data;
 
@@ -11,9 +12,11 @@ using UserAuth.Data;
 namespace UserAuth.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241008092056_AddPurchaseOrder")]
+    partial class AddPurchaseOrder
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -225,30 +228,6 @@ namespace UserAuth.Migrations
                     b.ToTable("PurchaseOrders");
                 });
 
-            modelBuilder.Entity("UserAuth.Models.SalesOrder", b =>
-                {
-                    b.Property<int>("SalesId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SalesId"));
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.HasKey("SalesId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("SalesOrders");
-                });
-
             modelBuilder.Entity("UserAuth.Models.Users", b =>
                 {
                     b.Property<string>("Id")
@@ -381,17 +360,6 @@ namespace UserAuth.Migrations
                 });
 
             modelBuilder.Entity("UserAuth.Models.PurchaseOrder", b =>
-                {
-                    b.HasOne("UserAuth.Models.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
-                });
-
-            modelBuilder.Entity("UserAuth.Models.SalesOrder", b =>
                 {
                     b.HasOne("UserAuth.Models.Product", "Product")
                         .WithMany()

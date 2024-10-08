@@ -11,6 +11,8 @@ namespace UserAuth.Data
         }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<PurchaseOrder> PurchaseOrders { get; set; }
+        public DbSet<SalesOrder> SalesOrders { get; set; }
 
     }
 }

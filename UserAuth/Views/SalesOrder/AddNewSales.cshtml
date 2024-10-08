@@ -1,0 +1,23 @@
+﻿@model UserAuth.Models.SalesOrder
+
+<form asp-action="AddNewSales" method="post">
+    <div class="form-group">
+        <label asp-for="ProductId" class="control-label">Product</label>
+        <select asp-for="ProductId" class="form-control" asp-items="ViewBag.Products"></select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Quantity" class="control-label">Quantity</label>
+        <input asp-for="Quantity" class="form-control" />
+        <span asp-validation-for="Quantity" class="text-danger"></span>
+    </div>
+
+    <input type="hidden" asp-for="Price" />
+    <button type="submit" class="btn btn-success">Sales</button>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

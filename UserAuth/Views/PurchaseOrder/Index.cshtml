@@ -1,0 +1,63 @@
+﻿@model IEnumerable<UserAuth.Models.PurchaseOrder>
+
+<div class="container mt-4">
+    <h2>Purchase Order List</h2>
+    <button class="btn btn-primary" onclick="showNewPurchaseModal()">New Purchase</button>
+
+    <table class="table table-bordered mt-3">
+        <thead>
+            <tr>
+                <th>Purchase ID</th>
+                <th>Product Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var purchase in Model)
+            {
+                <tr>
+                    <td>@purchase.PurchaseId</td>
+                    <td>@purchase.Product.ProductName</td>
+                    <td>@purchase.Quantity</td>
+                    <td>@purchase.Price</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<!-- Modal for Adding New Purchase -->
+<div id="newPurchaseModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="newPurchaseModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="newPurchaseModalLabel">New Purchase</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Form will be loaded here via AJAX -->
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function showNewPurchaseModal() {
+            $.ajax({
+                url: '/PurchaseOrder/AddNewPurchase',
+                type: 'GET',
+                success: function (result) {
+                    $('.modal-body').html(result);
+                    $('#newPurchaseModal').modal('show');
+                },
+                error: function () {
+                    alert('Error loading form.');
+                }
+            });
+        }
+    </script>
+}

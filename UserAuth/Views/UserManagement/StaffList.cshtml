@@ -1,0 +1,24 @@
+﻿@model IEnumerable<UserAuth.ViewModels.StaffListViewModel>
+
+<div class="container mt-4">
+    <h2>Staff List</h2>
+    <table class="table table-bordered mt-3">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Role</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td>@user.UserName</td>
+                    <td>@user.Email</td>
+                    <td>@user.Role</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
