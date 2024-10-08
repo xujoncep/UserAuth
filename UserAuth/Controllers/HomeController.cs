@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Serilog;
 using System.Diagnostics;
 using UserAuth.Models;
 
@@ -16,11 +17,13 @@ namespace UserAuth.Controllers
 
         public IActionResult Index()
         {
+            Log.Information("Index page accessed at {Time}", DateTime.Now);
             return View();
         }
         [Authorize]
         public IActionResult Privacy()
         {
+            Log.Information("Privacy page accessed at {Time}", DateTime.Now);
             return View();
         }
 

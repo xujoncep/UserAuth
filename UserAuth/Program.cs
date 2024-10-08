@@ -1,12 +1,27 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
 using UserAuth.Data;
 using UserAuth.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Configure Serilog
+
+Log.Logger = new LoggerConfiguration()
+    .MinimumLevel.Information() // Only log Information, Warning, Error, and Fatal
+    .WriteTo.File("Logs/log.txt",
+                  outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss} [{Level:u3}] {Message:lj}{NewLine}{Exception}",
+                  rollingInterval: RollingInterval.Day)
+    .CreateLogger();
+
+
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// Add Serilog as the logging provider
+builder.Host.UseSerilog();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
@@ -67,6 +82,21 @@ app.MapControllerRoute(
 
 
 app.Run();
+
+// Ensure that logs are flushed when the app stops
+try
+{
+    Log.Information("Starting the web application");
+    app.Run();
+}
+catch (Exception ex)
+{
+    Log.Fatal(ex, "The application failed to start correctly");
+}
+finally
+{
+    Log.CloseAndFlush(); // Ensure all logs are written to file before exit
+}
 
 async Task SeedRolesAsync(RoleManager<IdentityRole> roleManager)
 {
