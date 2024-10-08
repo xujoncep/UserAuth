@@ -1,0 +1,17 @@
+﻿@model UserAuth.Models.Category
+
+<form asp-action="AddOrEdit">
+    <div class="form-group">
+        <label asp-for="CategoryName" class="control-label"></label>
+        <input asp-for="CategoryName" class="form-control" />
+        <span asp-validation-for="CategoryName" class="text-danger"></span>
+    </div>
+    <input type="hidden" asp-for="CategoryId" />
+    <button type="submit" class="btn btn-success">Save</button>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
