@@ -1,42 +1,64 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿<!-- File: Views/Home/Index.cshtml -->
+@model UserAuth.ViewModels.DashboardViewModel
+
+@{
+    ViewBag.Title = "Dashboard";
 }
 
-<!-- Hero Section -->
-<div class="jumbotron text-center bg-primary text-white">
-    <div class="container">
-        <h1 class="display-4">Welcome to Our Website</h1>
-        <p class="lead">Build modern web apps with ASP.NET Core and Bootstrap.</p>
-        <a href="https://learn.microsoft.com/aspnet/core" class="btn btn-light btn-lg">Learn More</a>
-    </div>
-</div>
-
-<!-- Features Section -->
 <div class="container mt-5">
-    <div class="row text-center">
-        <div class="col-lg-4">
-            <img src="https://via.placeholder.com/150" alt="Feature 1" class="rounded-circle mb-3">
-            <h2>Feature 1</h2>
-            <p>Discover the power of ASP.NET Core with high-performance and cross-platform capabilities.</p>
+    <h1 class="mb-4 text-center fw-bolder" style="color:#C71A40;">Inventory Management Dashboard</h1>
+
+    <div class="row fw-bolder">
+        <!-- Total Inventory Value -->
+        <div class="col-md-4 mb-4">
+            <div class="card text-white bg-primary h-100 rounded-3 shadow">
+                <div class="card-body position-relative">
+                    <i class="fas fa-dollar-sign fa-5x position-absolute top-0 end-0 p-3 opacity-25"></i>
+                    <h5 class="card-title">Total Inventory Value</h5>
+                    <p class="card-text display-4">@Model.TotalInventoryValue.ToString("C")</p>
+                </div>
+            </div>
         </div>
-        <div class="col-lg-4">
-            <img src="https://via.placeholder.com/150" alt="Feature 2" class="rounded-circle mb-3">
-            <h2>Feature 2</h2>
-            <p>Leverage Bootstrap for responsive, mobile-first projects on the web.</p>
+        <!-- Total Products -->
+        <div class="col-md-4 mb-4">
+            <div class="card text-white bg-success h-100 rounded-3 shadow">
+                <div class="card-body position-relative">
+                    <i class="fas fa-boxes fa-5x position-absolute top-0 end-0 p-3 opacity-25"></i>
+                    <h5 class="card-title">Total Products</h5>
+                    <p class="card-text display-4">@Model.TotalProducts</p>
+                </div>
+            </div>
         </div>
-        <div class="col-lg-4">
-            <img src="https://via.placeholder.com/150" alt="Feature 3" class="rounded-circle mb-3">
-            <h2>Feature 3</h2>
-            <p>Seamlessly integrate ASP.NET Core with cloud-based applications.</p>
+        <!-- Total Categories -->
+        <div class="col-md-4 mb-4">
+            <div class="card text-white bg-info h-100 rounded-3 shadow">
+                <div class="card-body position-relative">
+                    <i class="fas fa-tags fa-5x position-absolute top-0 end-0 p-3 opacity-25"></i>
+                    <h5 class="card-title">Total Categories</h5>
+                    <p class="card-text display-4">@Model.TotalCategories</p>
+                </div>
+            </div>
         </div>
     </div>
-</div>
 
-<!-- Call to Action Section -->
-<div class="bg-light py-5">
-    <div class="container text-center">
-        <h2 class="mb-4">Get Started Now</h2>
-        <p class="mb-4">Join thousands of developers building scalable web apps with ASP.NET Core.</p>
+    <!-- Products per Category -->
+    <h2 class="mt-5">Products per Category</h2>
+    <div class="row fw-bolder">
+        @foreach (var category in Model.CategoryProductCounts)
+        {
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card border-0 shadow rounded-3 h-100">
+                    <div class="card-header bg-light border-0 rounded-top">
+                        <i class="fas fa-tag text-primary"></i>
+                        <strong>@category.CategoryName</strong>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">
+                            <i class="fas fa-box"></i> Number of Products: @category.ProductCount
+                        </p>
+                    </div>
+                </div>
+            </div>
+        }
     </div>
 </div>
-

@@ -24,7 +24,8 @@ namespace UserAuth.Models
         [Required(ErrorMessage = "Category is required")]
         public int CategoryId { get; set; } // Foreign key to Category table
 
-        // Navigation property to Category
+        // Navigation property
+        [ForeignKey("CategoryId")]
         public Category Category { get; set; }
     }
 }

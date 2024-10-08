@@ -1,44 +1,53 @@
 ﻿@model UserAuth.ViewModels.InventoryReportViewModel
 
-<div class="container mt-4">
-    <h2>@Model.InventoryName</h2>
-    <p><strong>Report Generated:</strong> @Model.ReportGeneratedTime.ToString("g")</p>
+<div class="container mt-5">
+    <div class="text-center mb-4">
+        <h2><i class="fas fa-boxes"></i> @Model.InventoryName</h2>
+        <p class="lead">
+            <strong>Report Generated:</strong> @Model.ReportGeneratedTime.ToString("g")
+        </p>
+    </div>
 
-    <table class="table table-bordered mt-3">
-        <thead>
+    <table class="table table-hover table-striped table-bordered mt-3">
+        <thead class="thead-dark">
             <tr>
-                <th>Product Name</th>
-                <th>Quantity</th>
-                <th>Price (Per Unit)</th>
-                <th>Total Price</th>
+                <th><i class="fas fa-box"></i> Product Name</th>
+                <th><i class="fas fa-sort-numeric-up"></i> Quantity</th>
+                <th><i class="fas fa-dollar-sign"></i> Price (Per Unit)</th>
+                <th><i class="fas fa-money-bill-wave"></i> Total Price</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var product in Model.Products)
             {
-                <tr>
-                    <td>@product.ProductName</td>
-                    <td>@product.Quantity</td>
-                    <td>@product.Price.ToString("C")</td>
-                    <td>@product.TotalPrice.ToString("C")</td>
-                </tr>
+                    <tr>
+                        <td>@product.ProductName</td>
+                        <td>@product.Quantity</td>
+                        <td>@product.Price.ToString("C")</td>
+                        <td>@product.TotalPrice.ToString("C")</td>
+                    </tr>
             }
             <tr>
-                <td colspan="3"><strong>Total Inventory Value:</strong></td>
+                <td colspan="3" class="text-right"><strong>Total Inventory Value:</strong></td>
                 <td><strong>@Model.TotalInventoryValue.ToString("C")</strong></td>
             </tr>
         </tbody>
     </table>
 
-    <div class="mt-4">
-        <button class="btn btn-primary" onclick="printReport()">Print</button>
+    <div class="text-center mt-5">
+        <button class="btn btn-primary" onclick="printReport()">
+            <i class="fas fa-print"></i> Print
+        </button>
     </div>
 </div>
 
 @section Scripts {
-    <script>
-        function printReport() {
-            window.print();
-        }
-    </script>
+        <script>
+            function printReport() {
+                window.print();
+            }
+        </script>
 }
+
+<!-- Font Awesome CDN (if not already included) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOMo4Zl5SA4AlfkaoMm6AHxAcSsm29QuflD+UGJ8" crossorigin="anonymous" />

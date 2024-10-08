@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using UserAuth.Data;
@@ -6,6 +7,7 @@ using UserAuth.Models;
 
 namespace UserAuth.Controllers
 {
+    [Authorize(Roles = "Manager, SuperAdmin")]
     public class ProductController : Controller
     {
         private readonly AppDbContext _context;

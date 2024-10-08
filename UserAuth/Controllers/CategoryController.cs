@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using UserAuth.Data;
 using UserAuth.Models;
 
 namespace UserAuth.Controllers
 {
+    [Authorize(Roles = "Manager,SuperAdmin")]
     public class CategoryController : Controller
     {
         private readonly AppDbContext _context;
@@ -43,7 +45,7 @@ namespace UserAuth.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult AddOrEdit(Category category)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 if (category.CategoryId == 0)
                 {

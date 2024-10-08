@@ -40,6 +40,13 @@ builder.Services.AddIdentity<Users, IdentityRole>(options =>
 })  .AddEntityFrameworkStores<AppDbContext>()
     .AddDefaultTokenProviders();
 
+//Authorization Control
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    // Set the AccessDeniedPath to your AccessDenied action
+    options.AccessDeniedPath = "/Account/AccessDenied";
+});
+
 var app = builder.Build();
 
 // Ensure roles are created
@@ -60,6 +67,7 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
@@ -100,7 +108,7 @@ finally
 
 async Task SeedRolesAsync(RoleManager<IdentityRole> roleManager)
 {
-    string[] roleNames = { "Admin", "Manager", "Supplier", "Customer" };
+    string[] roleNames = { "Admin", "Manager", "Supplier", "Customer", "SuperAdmin" };
     foreach (var roleName in roleNames)
     {
         if (!await roleManager.RoleExistsAsync(roleName))

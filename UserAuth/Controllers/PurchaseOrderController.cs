@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using UserAuth.Data;
@@ -7,6 +8,7 @@ using UserAuth.ViewModels;
 
 namespace UserAuth.Controllers
 {
+    [Authorize(Roles = "Supplier, SuperAdmin")]
     public class PurchaseOrderController : Controller
     {
         private readonly AppDbContext _context;

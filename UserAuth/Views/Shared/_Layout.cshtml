@@ -8,12 +8,14 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/UserAuth.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-o8Ug3...gYlJdY" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3 fw-bolder">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">UserAuth</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index" style="color:#C71A40;">BIMS™ </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -26,36 +28,79 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Category" asp-action="Index">Category</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="Index">Product</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="UserManagement" asp-action="Index">User List</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="UserManagement" asp-action="StaffList">Staff List</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="PurchaseOrder" asp-action="Index">Purchase Order</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="SalesOrder" asp-action="Index">Sales Order</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Report" asp-action="InventoryReport">I-Report</a>
+                       
+                        
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-dark" href="#" id="manageProductDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Manage Product
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="manageProductDropdown">
+                                <!-- Category Link -->
+                                <li>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Category" asp-action="Index">Category</a>
+                                </li>
+                                <!-- Product Link -->
+                                <li>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Product" asp-action="Index">Product</a>
+                                </li>
+                            </ul>
                         </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="PurchaseReport" asp-action="Index">Purchase Report</a>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-dark" href="#" id="manageUserDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Manage User
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="manageUserDropdown">
+                                <!-- User List Link -->
+                                <li>
+                                    <a class="dropdown-item" asp-area="" asp-controller="UserManagement" asp-action="Index">User List</a>
+                                </li>
+                                <!-- Staff List Link -->
+                                <li>
+                                    <a class="dropdown-item" asp-area="" asp-controller="UserManagement" asp-action="StaffList">Staff List</a>
+                                </li>
+                            </ul>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="SalesReport" asp-action="Index">Sales Report</a>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-dark" href="#" id="manageOrderDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Manage Order
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="manageOrderDropdown">
+                                <!-- Purchase Order Link -->
+                                <li>
+                                    <a class="dropdown-item" asp-area="" asp-controller="PurchaseOrder" asp-action="Index">Purchase Order</a>
+                                </li>
+                                <!-- Sales Order Link -->
+                                <li>
+                                    <a class="dropdown-item" asp-area="" asp-controller="SalesOrder" asp-action="Index">Sales Order</a>
+                                </li>
+                            </ul>
                         </li>
+
+
+
+                        <li class="nav-item dropdown ">
+                        <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Reports
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                         
+                            <li>
+                                <a class="dropdown-item" asp-area="" asp-controller="Report" asp-action="InventoryReport">I-Report</a>
+                            </li>
+                          
+                            <li>
+                                <a class="dropdown-item" asp-area="" asp-controller="PurchaseReport" asp-action="Index">Purchase Report</a>
+                            </li>
+                           
+                            <li>
+                                <a class="dropdown-item" asp-area="" asp-controller="SalesReport" asp-action="Index">Sales Report</a>
+                            </li>
+                        </ul>
+                       </li>
+
 
 
 
@@ -73,8 +118,10 @@
     </div>
 
     <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - UserAuth - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        <div class="container text-center" style="background-color:#FFFEFE;">
+            &copy; 2024 - BIMS -
+            <a href="https://www.linkedin.com/in/sujoncep/" target="_blank">LinkedIn</a> |
+            <a href="https://github.com/xujoncep" target="_blank">GitHub</a>
         </div>
     </footer>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

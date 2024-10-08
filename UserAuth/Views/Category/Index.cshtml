@@ -1,15 +1,19 @@
 ﻿@model IEnumerable<UserAuth.Models.Category>
 
-<div class="container mt-4">
-    <h2>Category List</h2>
-    <button class="btn btn-primary" onclick="showAddEditModal(0)">Add New Category</button>
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2><i class="fas fa-list"></i> Category List</h2>
+        <button class="btn btn-primary" onclick="showAddEditModal(0)">
+            <i class="fas fa-plus-circle"></i> Add New Category
+        </button>
+    </div>
 
-    <table class="table table-bordered mt-3">
-        <thead>
+    <table class="table table-hover table-bordered table-striped">
+        <thead class="thead-dark">
             <tr>
-                <th>CategoryId</th>
-                <th>Category Name</th>
-                <th>Actions</th>
+                <th><i class="fas fa-hashtag"></i> Category ID</th>
+                <th><i class="fas fa-tag"></i> Category Name</th>
+                <th><i class="fas fa-cog"></i> Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -19,8 +23,12 @@
                     <td>@category.CategoryId</td>
                     <td>@category.CategoryName</td>
                     <td>
-                        <button class="btn btn-sm btn-warning" onclick="showAddEditModal(@category.CategoryId)">Edit</button>
-                        <a href="@Url.Action("Delete", "Category", new { id = category.CategoryId })" class="btn btn-sm btn-danger">Delete</a>
+                        <button class="btn btn-sm btn-warning" onclick="showAddEditModal(@category.CategoryId)">
+                            <i class="fas fa-edit"></i> Edit
+                        </button>
+                        <a href="@Url.Action("Delete", "Category", new { id = category.CategoryId })" class="btn btn-sm btn-danger">
+                            <i class="fas fa-trash-alt"></i> Delete
+                        </a>
                     </td>
                 </tr>
             }
@@ -33,7 +41,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="categoryModalLabel">Add/Edit Category</h5>
+                <h5 class="modal-title" id="categoryModalLabel"><i class="fas fa-edit"></i> Add/Edit Category</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

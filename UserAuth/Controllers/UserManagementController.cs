@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -7,6 +8,7 @@ using UserAuth.ViewModels;
 
 namespace UserAuth.Controllers
 {
+    [Authorize(Roles = "Admin , SuperAdmin")]
     public class UserManagementController : Controller
     {
         private readonly UserManager<Users> _userManager;
